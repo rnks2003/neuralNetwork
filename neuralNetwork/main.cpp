@@ -6,9 +6,12 @@
 //
 
 #include <iostream>
+#include "coreLib.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+int main() {
+    float a[3][3] = {1,2,3,4,5,6,7,8,9};
+    
+    layerINPUT input(3,3,&a[0][0]);
+    
+    std::cout<<"Read status : "<<input.readStatus()<<std::endl;
 }

@@ -9,16 +9,32 @@
 #define coreLib_h
 
 class layerINPUT {
-    float* values;
-    int neuronCount;
+    float* values = NULL;
+    
+    int xLen = 0;
+    int yLen = 0;
+    
+    int neuronCount = 0;
+    int inputSize = 0;
+    int inputDim = 0;
+    
 public:
-    layerINPUT(int neurons){
-        this->neuronCount = neurons;
-        values = new float(neuronCount);
+    layerINPUT(int sampleCount,float* values){
+        this->neuronCount = sampleCount;
+        this->values = values;
+        this->inputSize = neuronCount*sizeof(values);
+        this->inputDim = 1;
     }
-    int readINPUT(){
-        std::cout<<"readINPUT : "<<neuronCount;
-        return (int)'s';
+    layerINPUT(int width, int height, float* values){
+        this->xLen = width;
+        this->yLen = height;
+        this->neuronCount = xLen*yLen;
+        this->values = values;
+        this->inputSize = neuronCount*sizeof(values);
+        this->inputDim = 2;
+    }
+    int readStatus(){
+        return this->inputDim;
     }
 };
 
